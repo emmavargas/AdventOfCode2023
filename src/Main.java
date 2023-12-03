@@ -26,7 +26,7 @@ public class Main {
                 test2.cantidadJuegos();
                 break;
             default:
-                System.out.println("No existe el dia");
+                System.out.println("No existe el dia.");
         }
     }
 }
