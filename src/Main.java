@@ -12,6 +12,7 @@ public class Main {
 
         System.out.println("Ingrese dia: ");
         dato = ingresar.nextInt();
+        ingresar.close();
         switch(dato)
         {
             case 1:

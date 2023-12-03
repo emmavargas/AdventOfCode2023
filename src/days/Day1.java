@@ -3,6 +3,7 @@ package days;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.LinkedList;
 
 public class Day1 {
@@ -17,7 +18,7 @@ public class Day1 {
         try
         {
             String line;
-            in = new BufferedReader(new FileReader("src\\InputDay1.txt"));
+            in = new BufferedReader(new FileReader("src/InputDay1.txt"));
             while((line=in.readLine())!=null)
             {
                 lines.add(line);
@@ -31,77 +32,90 @@ public class Day1 {
         }
     }
 
+    /**
+     * 
+     */
     public void loadOfNumber()
     {
-        LinkedList<String> numbers = new LinkedList<String>();
-        numbers.add("zero");
-        numbers.add("one");
-        numbers.add("two");
-        numbers.add("three");
-        numbers.add("four");
-        numbers.add("five");
-        numbers.add("six");
-        numbers.add("seven");
-        numbers.add("eight");
-        numbers.add("nine");
+        LinkedList<String> numbers = new LinkedList<String>(Arrays.asList(
+            "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"
+        ));
 
-        for(String e: lines)
+        for(String line: lines)
         {
-            int floag =0;
+            boolean flag=false;
             int max=0;
             int min = 0;
-            int maxIndex=0;
-            int minIndex=0;
+            int maxIndex=-1;
+            int minIndex=-1;
             int number;
 
-            for(int i=0; i<e.length();i++)
+            for(int i=0; i<line.length();i++)
             {
-                int z = Character.getNumericValue(e.charAt(i));
-                for( int j = 0; j<10; j++)
-                {
-                    if(j==z)
-                    {
-                        if(floag==0)
-                        {
-                            max = j;
-                            min = j;
-                            maxIndex=i;
-                            minIndex=i;
-                            floag =1;
+                int z = Character.getNumericValue(line.charAt(i));
+
+                if(z>0 && z<10) {
+                    if(!flag) {
+                        max = z;
+                        min = z;
+                        maxIndex=i;
+                        minIndex=i;
+                        flag=true;
+                    } else {
+                        max=z;
+                        maxIndex = i;
+                    }
+                }
+            }
+
+            boolean flagStr=false;
+            int maxStr = 0;
+            int minStr = 0;
+            int maxIndexStr=-1;
+            int minIndexStr=-1;
+
+            for(String numberStr: numbers) {
+                if (line.indexOf(numberStr) != -1) {
+                    if (!flagStr) {
+                        maxStr = numbers.indexOf(numberStr);
+                        minStr = numbers.indexOf(numberStr);
+                        minIndexStr = line.indexOf(numberStr);
+                        maxIndexStr = line.lastIndexOf(numberStr);
+                        flagStr=true;
+                    } else {
+                        if(line.indexOf(numberStr) < minIndexStr) {
+                            minStr = numbers.indexOf(numberStr);
+                            minIndexStr = line.indexOf(numberStr);
                         }
-                        else {
-                            max =j;
-                            maxIndex = i;
+
+                        if(line.lastIndexOf(numberStr) > maxIndexStr) {
+                            maxStr = numbers.indexOf(numberStr);
+                            maxIndexStr = line.lastIndexOf(numberStr);
                         }
                     }
                 }
             }
 
-            for(String f: numbers) {
-                if (e.indexOf(f) != -1) {
-                    if (floag == 0) {
-                        max = numbers.indexOf(f);
-                        min = numbers.indexOf(f);
-                        minIndex = e.indexOf(f);
-                        maxIndex = e.lastIndexOf(f);
-                        floag = 1;
-                    } else {
-                        if (e.indexOf(f) < minIndex) {
-                            min = numbers.indexOf(f);
-                            minIndex = e.indexOf(f);
-                            if(e.lastIndexOf(f) > maxIndex) {
-                                max = numbers.indexOf(f);
-                                maxIndex = e.lastIndexOf(f);
-                            }
-                        }
-                        else if (e.lastIndexOf(f) > maxIndex) {
-                            max = numbers.indexOf(f);
-                            maxIndex = e.lastIndexOf(f);
-                        }
-                    }
-                }
+            int minResult = 0;
+            int maxResult = 0;
+            
+            if(minIndex != -1 && minIndexStr == -1) {
+                minResult = min;
+            } else if (minIndex == -1 && minIndexStr != -1) {
+                minResult = minStr;
+            } else {
+                minResult = (minIndex < minIndexStr) ?  min : minStr;
             }
-            number = (min*10)+max;
+
+            if(maxIndex != -1 && maxIndexStr == -1) {
+                maxResult = max;
+            } else if (maxIndex == -1 && maxIndexStr != -1) {
+                maxResult = maxStr;
+            } else {
+                maxResult = (maxIndex > maxIndexStr) ?  max : maxStr;
+            }
+
+            number = (minResult*10)+maxResult;
             lineNumber.add(number);
         }
     }

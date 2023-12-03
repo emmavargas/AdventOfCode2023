@@ -12,7 +12,7 @@ public class Day2 {
     {
         BufferedReader in= null;
         try {
-            in = new BufferedReader(new FileReader("src\\InputDay2.txt"));
+            in = new BufferedReader(new FileReader("src/InputDay2.txt"));
             String line;
             while((line=in.readLine())!=null)
             {
