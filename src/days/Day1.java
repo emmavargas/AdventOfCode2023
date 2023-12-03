@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.LinkedList;
+import java.util.TreeMap;
 
 public class Day1 {
 
@@ -43,77 +44,28 @@ public class Day1 {
 
         for(String line: lines)
         {
-            boolean flag=false;
-            int max=0;
-            int min = 0;
-            int maxIndex=-1;
-            int minIndex=-1;
             int number;
+
+            TreeMap<Integer, Integer> intNumbers = new TreeMap<Integer, Integer>();
 
             for(int i=0; i<line.length();i++)
             {
                 int z = Character.getNumericValue(line.charAt(i));
 
                 if(z>0 && z<10) {
-                    if(!flag) {
-                        max = z;
-                        min = z;
-                        maxIndex=i;
-                        minIndex=i;
-                        flag=true;
-                    } else {
-                        max=z;
-                        maxIndex = i;
-                    }
+                    intNumbers.put(i, z);
                 }
             }
-
-            boolean flagStr=false;
-            int maxStr = 0;
-            int minStr = 0;
-            int maxIndexStr=-1;
-            int minIndexStr=-1;
 
             for(String numberStr: numbers) {
                 if (line.indexOf(numberStr) != -1) {
-                    if (!flagStr) {
-                        maxStr = numbers.indexOf(numberStr);
-                        minStr = numbers.indexOf(numberStr);
-                        minIndexStr = line.indexOf(numberStr);
-                        maxIndexStr = line.lastIndexOf(numberStr);
-                        flagStr=true;
-                    } else {
-                        if(line.indexOf(numberStr) < minIndexStr) {
-                            minStr = numbers.indexOf(numberStr);
-                            minIndexStr = line.indexOf(numberStr);
-                        }
-
-                        if(line.lastIndexOf(numberStr) > maxIndexStr) {
-                            maxStr = numbers.indexOf(numberStr);
-                            maxIndexStr = line.lastIndexOf(numberStr);
-                        }
-                    }
+                    intNumbers.put(line.indexOf(numberStr), numbers.indexOf(numberStr));
+                    intNumbers.put(line.lastIndexOf(numberStr), numbers.indexOf(numberStr));
                 }
             }
 
-            int minResult = 0;
-            int maxResult = 0;
-            
-            if(minIndex != -1 && minIndexStr == -1) {
-                minResult = min;
-            } else if (minIndex == -1 && minIndexStr != -1) {
-                minResult = minStr;
-            } else {
-                minResult = (minIndex < minIndexStr) ?  min : minStr;
-            }
-
-            if(maxIndex != -1 && maxIndexStr == -1) {
-                maxResult = max;
-            } else if (maxIndex == -1 && maxIndexStr != -1) {
-                maxResult = maxStr;
-            } else {
-                maxResult = (maxIndex > maxIndexStr) ?  max : maxStr;
-            }
+            int minResult = intNumbers.firstEntry().getValue();
+            int maxResult = intNumbers.lastEntry().getValue();
 
             number = (minResult*10)+maxResult;
             lineNumber.add(number);
@@ -129,5 +81,4 @@ public class Day1 {
         }
         return total;
     }
-
 }
