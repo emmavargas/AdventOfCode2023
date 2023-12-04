@@ -3,6 +3,7 @@ package days;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.LinkedList;
 
 public class Day2 {
@@ -16,6 +17,7 @@ public class Day2 {
             String line;
             while((line=in.readLine())!=null)
             {
+                line = line.replace(" ,","");
                 String[] asd = new String[2];
                 asd = line.split(":");
                 list.add(asd[1]);
@@ -36,79 +38,43 @@ public class Day2 {
         int cantJuegos=0;
         int potencia = 0;
 
-        for(String e : list)
+        for(String line : list)
         {
+            HashMap<Integer,HashMap<String,Integer>> mapaRondas = new HashMap<Integer,HashMap<String,Integer>>();
             boolean invalidBlue = false;
             boolean invalidRed = false;
             boolean invalidGreen = false;
             int cantBlueValida = 0;
             int cantRedValida = 0;
             int cantGreenValida = 0;
-            LinkedList<String> ronda = new LinkedList<String>();
+            LinkedList<String> rondas = new LinkedList<String>();
             String[] a = new String[list.size()];
-            a = e.split(";");
+            a = line.split(";");
             for(int i=0 ; i<a.length;i++)
             {
-                ronda.add(a[i]);
+                rondas.add(a[i]);
             }
-            for(String g: ronda)
+            for(String ronda: rondas)
             {
-                LinkedList<String> datos = new LinkedList<String>();
-                LinkedList<String> valores = new LinkedList<String>();
-                String[] b = new String[ronda.size()];
-                b = g.split(",");
-                for(int i=0; i<b.length;i++)
+                HashMap<String, Integer> mapaRonda = new HashMap<String,Integer>();
+                String color;
+                if(ronda.indexOf("green")!=-1)
                 {
-                    datos.add(b[i]);
+                 mapaRonda.put("green", ronda.indexOf(ronda.indexOf("green")-1));
                 }
-                for(String h: datos)
+                if(ronda.indexOf("red")!=-1)
                 {
-                    String[] c = new String[ronda.size()];
-                    c = h.split(" ");
-                    int d = Integer.parseInt(c[1]);
-                    //System.out.println(d);
-                    if(c[2].equals("blue"))
-                    {
-                        if(d<=14 && d>cantBlueValida)
-                        {
-                            cantBlueValida=d;
-                        }
-                        if(d>14 && d>cantBlueValida)
-                        {
-                            invalidBlue=true;
-                            cantBlueValida =d;
-                        }
-                    } else if (c[2].equals("red"))
-                    {
-                        if(d<=14 && d>cantRedValida)
-                        {
-                            cantRedValida=d;
-                        }
-                        if(d>14 && d>cantRedValida)
-                        {
-                            invalidRed=true;
-                            cantRedValida =d;
-                        }
-                    }
-                    else if (c[2].equals("green"))
-                    {
-                        if(d<=14 && d>cantGreenValida)
-                        {
-                            cantGreenValida=d;
-                        }
-                        if(d>14 && d>cantGreenValida)
-                        {
-                            invalidGreen=true;
-                            cantGreenValida =d;
-                        }
-                    }
-
+                    mapaRonda.put("red", ronda.indexOf(ronda.indexOf("red")-1));
+                }
+                if(ronda.indexOf("blue")!=-1)
+                {
+                    mapaRonda.put("blue", ronda.indexOf(ronda.indexOf("blue")-1));
                 }
 
             }
             if(invalidBlue==false && invalidGreen==false && invalidRed==false)
             {
-                cantJuegos=cantJuegos + list.indexOf(e)+1;
+                cantJuegos=cantJuegos + list.indexOf(line)+1;
             }
             potencia = potencia + (cantBlueValida*cantRedValida*cantGreenValida);
 
