@@ -90,13 +90,4 @@ public class Day4  {
         System.out.println(total);
     }
 
-
-
-
-
-
-
-
-
-
 }
