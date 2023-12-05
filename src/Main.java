@@ -36,6 +36,13 @@ public class Main {
                 test3.valoresEngranajesNoValidos();
                 test3.sumarEngranajes();
                 break;
+            case 4:
+                Day4 test4 = new Day4();
+                test4.cargarLineas();
+                test4.cargaListaTarjetas();
+                test4.cargarPuntajes();
+                test4.cargarCoincidencias();
+                break;
             default:
                 System.out.println("No existe el dia.");
         }
