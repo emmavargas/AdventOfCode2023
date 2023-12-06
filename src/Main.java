@@ -43,6 +43,16 @@ public class Main {
                 test4.cargarPuntajes();
                 test4.cargarCoincidencias();
                 break;
+            case 5:
+                Day5 test5= new Day5();
+                test5.cargaDatos();
+                test5.cargarCondiciones();
+                test5.valorMenor();
+                test5.valorFinalMinimos();
+                test5.valorMinmo();
+                test5.parte2Numeros();
+                //test5.tester();
+                break;
             default:
                 System.out.println("No existe el dia.");
         }
