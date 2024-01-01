@@ -69,7 +69,6 @@ public class Day6 {
                     victoria++;
                 }
             }
-            System.out.println(victoria);
             resultado = resultado*victoria;
         }
         System.out.println(resultado);
