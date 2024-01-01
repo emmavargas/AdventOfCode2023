@@ -53,6 +53,9 @@ public class Main {
                 test5.parte2Numeros();
                 //test5.tester();
                 break;
+            case 6:
+                Day6 test6 = new Day6();
+                test6.resolverDia();
             default:
                 System.out.println("No existe el dia.");
         }
