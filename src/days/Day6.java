@@ -1,15 +1,19 @@
 package days;
 
+import javax.sound.midi.SysexMessage;
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Day6 {
 
-    public void resolverDia() throws IOException {
-        this.cargarDatos();
+    public void resolverDia()
+    {
+
     }
     public void cargarDatos() throws IOException
     {
@@ -23,7 +27,7 @@ public class Day6 {
         {
 
 
-            in = new BufferedReader(new FileReader("src\\InputDay6.txt"));
+            in = new BufferedReader(new FileReader("C:\\Users\\emman\\Desktop\\prueba\\datos.txt"));
             String line;
             while((line=in.readLine())!=null)
             {
@@ -44,6 +48,7 @@ public class Day6 {
                     distancia = Arrays.asList(valueDistance);
                 }
             }
+
         }
         finally {
             if(in!=null)
@@ -56,19 +61,28 @@ public class Day6 {
         int resultado=1;
         for(int nCarrera=0; nCarrera<numeroCarreras; nCarrera++)
         {
-            int victoria=0;
-            int tiempoCarrera= Integer.parseInt(tiempos.get(nCarrera));
-            int distanciaCarrera = Integer.parseInt(distancia.get(nCarrera));
-            for(int botonCarga=0; botonCarga<tiempoCarrera; botonCarga++)
-            {
+            int exito=0;
+            int b = Integer.parseInt(tiempos.get(nCarrera))*(-1);
+            int c =  Integer.parseInt(distancia.get(nCarrera));
 
-                int distanciaPropia = botonCarga*(tiempoCarrera-botonCarga);
-                if(distanciaPropia>distanciaCarrera)
+            int norma = (b*b) - (4*1*c);
+            if(norma>0)
+            {
+                int max=0;
+                int min=0;
+                double x1=((b*(-1)) + (Math.pow(norma,0.5)))/2;
+                double x2=((b*(-1)) - (Math.pow(norma,0.5)))/2;
+                max=(x1>x2)? (int)x1:(int)x2;
+                min=(x1<x2)? (int)x1+1:(int)x2+1;
+                if(x1==(double)max || x2==(double)max)
                 {
-                    victoria++;
+                    max=max-1;
                 }
+                exito= max-min+1;
+                resultado = resultado*exito;
+
             }
-            resultado = resultado*victoria;
+
         }
         System.out.println(resultado);
     }
