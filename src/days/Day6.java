@@ -44,7 +44,6 @@ public class Day6 {
                     distancia = Arrays.asList(valueDistance);
                 }
             }
-
         }
         finally {
             if(in!=null)
