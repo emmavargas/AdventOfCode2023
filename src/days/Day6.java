@@ -27,7 +27,7 @@ public class Day6 {
         {
 
 
-            in = new BufferedReader(new FileReader("C:\\Users\\emman\\Desktop\\prueba\\datos.txt"));
+            in = new BufferedReader(new FileReader("src\\InputDay6.txt"));
             String line;
             while((line=in.readLine())!=null)
             {
