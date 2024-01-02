@@ -1,12 +1,9 @@
 package days;
 
-import javax.sound.midi.SysexMessage;
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 
 public class Day6 {
@@ -72,17 +69,19 @@ public class Day6 {
                 int min=0;
                 double x1=((b*(-1)) + (Math.pow(norma,0.5)))/2;
                 double x2=((b*(-1)) - (Math.pow(norma,0.5)))/2;
-                max=(x1>x2)? (int)x1:(int)x2;
-                min=(x1<x2)? (int)x1+1:(int)x2+1;
-                if(x1==(double)max || x2==(double)max)
+                double xMax = x1 > x2 ? x1 : x2;
+                
+                max=(x1>x2) ? (int)x1 :(int)x2;
+                min=(x1<x2) ? (int)x1+1 :(int)x2+1;
+
+                if(Math.abs(xMax - (double)max) <= 1e-16)
                 {
                     max=max-1;
                 }
-                exito= max-min+1;
+
+                exito = max-min+1;
                 resultado = resultado*exito;
-
             }
-
         }
         System.out.println(resultado);
     }
