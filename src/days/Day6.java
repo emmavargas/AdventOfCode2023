@@ -73,6 +73,5 @@ public class Day6 {
             }
         }
         System.out.println(resultado);
-        //hola
     }
 }
