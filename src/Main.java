@@ -55,7 +55,8 @@ public class Main {
                 break;
             case 6:
                 Day6 test6 = new Day6();
-                test6.resolverDia();
+                test6.resolverDiaParte1();
+                test6.resolverDiaParte2();
                 break;
             default:
                 System.out.println("No existe el dia.");
