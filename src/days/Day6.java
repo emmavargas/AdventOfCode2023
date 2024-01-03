@@ -21,7 +21,7 @@ public class Day6 {
 
     }
 
-    public List cargarDatosParte1() throws IOException {
+    public List<LinkedList<String>> cargarDatosParte1() throws IOException {
         //List distancia = new LinkedList<Integer>();
         //List tiempo = new LinkedList<Integer>();
         List<String> distancia = null;
@@ -94,7 +94,7 @@ public class Day6 {
 
 
 
-    public List cargaDatosParte2() throws IOException
+    public List<LinkedList<String>> cargaDatosParte2() throws IOException
     {
         List<LinkedList<String>> carreras = new LinkedList<>();
 
