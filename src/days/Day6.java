@@ -12,6 +12,7 @@ public class Day6 {
     public void resolverDiaParte1() throws IOException {
         List<LinkedList<String>> carreras = this.cargarDatosParte1();
         this.mostrarResultado(carreras);
+        System.out.println("hola"); 
     }
 
     public void resolverDiaParte2() throws IOException {
