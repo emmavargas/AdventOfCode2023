@@ -13,6 +13,7 @@ public class Day6 {
         List<LinkedList<String>> carreras = this.cargarDatosParte1();
         this.mostrarResultado(carreras);
         System.out.println("hola");
+
         
     }
 
