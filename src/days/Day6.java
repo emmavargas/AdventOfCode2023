@@ -17,7 +17,6 @@ public class Day6 {
     public void resolverDiaParte2() throws IOException {
         List<LinkedList<String>> carreras = this.cargaDatosParte2();
         this.mostrarResultado(carreras);
-
     }
 
     public List<LinkedList<String>> cargarDatosParte1() throws IOException {
@@ -118,7 +117,6 @@ public class Day6 {
                 in.close();
             }
         }
-
         return carreras;
     }
 }
