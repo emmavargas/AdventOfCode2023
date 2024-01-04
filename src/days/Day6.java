@@ -21,8 +21,6 @@ public class Day6 {
     }
 
     public List<LinkedList<String>> cargarDatosParte1() throws IOException {
-        //List distancia = new LinkedList<Integer>();
-        //List tiempo = new LinkedList<Integer>();
         List<String> distancia = null;
         List<String> tiempos = null;
         List<LinkedList<String>> carreras = new LinkedList<>();
