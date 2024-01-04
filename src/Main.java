@@ -1,20 +1,17 @@
 import days.*;
-import ObjectsDays.*;
 
 import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException
-    {
+    public static void main(String[] args) throws IOException {
         int dato;
         Scanner ingresar = new Scanner(System.in);
 
         System.out.println("Ingrese dia: ");
         dato = ingresar.nextInt();
-        switch(dato)
-        {
+        switch (dato) {
             case 1:
                 Day1 test1 = new Day1();
                 test1.loadToList();
@@ -44,7 +41,7 @@ public class Main {
                 test4.cargarCoincidencias();
                 break;
             case 5:
-                Day5 test5= new Day5();
+                Day5 test5 = new Day5();
                 test5.cargaDatos();
                 test5.cargarCondiciones();
                 test5.valorMenor();
@@ -61,5 +58,6 @@ public class Main {
             default:
                 System.out.println("No existe el dia.");
         }
+        ingresar.close();
     }
 }

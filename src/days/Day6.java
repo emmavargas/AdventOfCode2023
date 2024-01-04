@@ -9,13 +9,12 @@ import java.util.List;
 
 public class Day6 {
 
-    public void resolverDiaParte1() throws IOException{
+    public void resolverDiaParte1() throws IOException {
         List<LinkedList<String>> carreras = this.cargarDatosParte1();
         this.mostrarResultado(carreras);
     }
 
-    public void resolverDiaParte2() throws IOException
-    {
+    public void resolverDiaParte2() throws IOException {
         List<LinkedList<String>> carreras = this.cargaDatosParte2();
         this.mostrarResultado(carreras);
 
@@ -30,7 +29,7 @@ public class Day6 {
         BufferedReader in = null;
         try {
 
-            in = new BufferedReader(new FileReader("src\\InputDay6.txt"));
+            in = new BufferedReader(new FileReader("src/InputDay6.txt"));
             String line;
             while ((line = in.readLine()) != null) {
                 String[] datosLine;
@@ -47,8 +46,7 @@ public class Day6 {
                 }
             }
             int numeroCarreras = tiempos.size();
-            for(int numeroCarrera=0; numeroCarrera<numeroCarreras;numeroCarrera++)
-            {
+            for (int numeroCarrera = 0; numeroCarrera < numeroCarreras; numeroCarrera++) {
                 LinkedList<String> carrera = new LinkedList<>();
                 carrera.add(tiempos.get(numeroCarrera));
                 carrera.add(distancia.get(numeroCarrera));
@@ -62,8 +60,8 @@ public class Day6 {
         }
         return carreras;
     }
-    public void mostrarResultado(List<LinkedList<String>> carreras)
-    {
+
+    public void mostrarResultado(List<LinkedList<String>> carreras) {
         long resultado = 1;
         for (int nCarrera = 0; nCarrera < carreras.size(); nCarrera++) {
             long exito;
@@ -93,16 +91,14 @@ public class Day6 {
     }
 
 
-
-    public List<LinkedList<String>> cargaDatosParte2() throws IOException
-    {
+    public List<LinkedList<String>> cargaDatosParte2() throws IOException {
         List<LinkedList<String>> carreras = new LinkedList<>();
 
 
         BufferedReader in = null;
         try {
             List<String> carrera = new LinkedList<>();
-            in = new BufferedReader(new FileReader("src\\InputDay6.txt"));
+            in = new BufferedReader(new FileReader("src/InputDay6.txt"));
             String line;
             while ((line = in.readLine()) != null) {
                 String[] datosLine;
@@ -113,7 +109,7 @@ public class Day6 {
                     carrera.add(valueTime);
                 } else if (datosLine[0].equals("Distance")) {
                     String valueDistance;
-                    valueDistance = datosLine[1].trim().replace(" ","");
+                    valueDistance = datosLine[1].trim().replace(" ", "");
                     carrera.add(valueDistance);
                 }
             }
