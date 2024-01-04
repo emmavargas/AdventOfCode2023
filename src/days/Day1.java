@@ -17,7 +17,7 @@ public class Day1 {
         try
         {
             String line;
-            in = new BufferedReader(new FileReader("src\\InputDay1.txt"));
+            in = new BufferedReader(new FileReader("src/InputDay1.txt"));
             while((line=in.readLine())!=null)
             {
                 lines.add(line);
