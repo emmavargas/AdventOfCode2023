@@ -12,9 +12,6 @@ public class Day6 {
     public void resolverDiaParte1() throws IOException {
         List<LinkedList<String>> carreras = this.cargarDatosParte1();
         this.mostrarResultado(carreras);
-        System.out.println("hola");
-
-        
     }
 
     public void resolverDiaParte2() throws IOException {
@@ -24,8 +21,6 @@ public class Day6 {
     }
 
     public List<LinkedList<String>> cargarDatosParte1() throws IOException {
-        //List distancia = new LinkedList<Integer>();
-        //List tiempo = new LinkedList<Integer>();
         List<String> distancia = null;
         List<String> tiempos = null;
         List<LinkedList<String>> carreras = new LinkedList<>();
