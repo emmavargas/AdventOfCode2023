@@ -10,7 +10,8 @@ public class Main {
         Scanner ingresar = new Scanner(System.in);
 
         System.out.println("Ingrese dia: ");
-        dato = ingresar.nextInt();
+        //dato = ingresar.nextInt();
+        dato =7;
         switch (dato) {
             case 1:
                 Day1 test1 = new Day1();
@@ -54,6 +55,10 @@ public class Main {
                 Day6 test6 = new Day6();
                 test6.resolverDiaParte1();
                 test6.resolverDiaParte2();
+                break;
+            case 7:
+                Day7 test7=new Day7();
+                test7.resolverParte1();
                 break;
             default:
                 System.out.println("No existe el dia.");
