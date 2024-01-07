@@ -8,7 +8,6 @@ public class Main {
     public static void main(String[] args) throws IOException {
         int dato;
         Scanner ingresar = new Scanner(System.in);
-
         System.out.println("Ingrese dia: ");
         //dato = ingresar.nextInt();
         dato =7;
