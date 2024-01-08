@@ -9,8 +9,7 @@ public class Main {
         int dato;
         Scanner ingresar = new Scanner(System.in);
         System.out.println("Ingrese dia: ");
-        //dato = ingresar.nextInt();
-        dato =7;
+        dato = ingresar.nextInt();
         switch (dato) {
             case 1:
                 Day1 test1 = new Day1();
@@ -57,7 +56,7 @@ public class Main {
                 break;
             case 7:
                 Day7 test7=new Day7();
-                //test7.resolverParte1();
+                test7.resolverParte1();
                 test7.resolverParte2();
                 break;
             default:

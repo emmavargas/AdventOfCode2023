@@ -135,55 +135,6 @@ public class Day7 {
         }
         return (int)tipo;
     }
-
-
-
-
-    public int tipoManoParte2(String mano)
-    {
-        String m = mano;
-        Map<Character,Integer> cantidadTipoCartas = new HashMap<>();
-        for(int carta=0; carta<mano.length();carta++)
-        {
-            if(cantidadTipoCartas.containsKey(mano.charAt(carta)))
-            {
-                cantidadTipoCartas.put(mano.charAt(carta), cantidadTipoCartas.get(mano.charAt(carta))+1);
-            }
-            else {
-                cantidadTipoCartas.put(mano.charAt(carta),1);
-            }
-        }
-        List<Character> keys = new LinkedList<>(cantidadTipoCartas.keySet());
-        Collections.sort(keys,(k1,k2) -> {
-            return  cantidadTipoCartas.get(k2)- cantidadTipoCartas.get(k1);
-        });
-        if (cantidadTipoCartas.containsKey('J') && keys.get(0)!='J')
-        {
-            cantidadTipoCartas.put(keys.get(0),cantidadTipoCartas.get(keys.get(0))+cantidadTipoCartas.get('J'));
-            cantidadTipoCartas.remove('J');
-            keys.remove(keys.indexOf('J'));
-
-        }
-       // keys.forEach(character -> System.out.println(character));
-        //System.out.print("\n");
-        //keys.forEach( key-> System.out.println(cantidadTipoCartas.get(key)));
-        //System.out.println(" ");
-
-
-        int potencia=1;
-        double tipo=0;
-        for(char key: keys)
-        {
-            tipo = tipo+ (cantidadTipoCartas.get(key)*Math.pow(10,keys.size()-potencia));
-            potencia++;
-        }
-        return (int)tipo;
-    }
-
-
-
-
-
         public void cargarDatosParte2() throws IOException
     {
         List<ManoCartas> cincoIgualesLista = new LinkedList<>();
@@ -240,8 +191,6 @@ public class Day7 {
                         cincoIgualesLista.add(new ManoCartas(mano,puntaje));
                         break;
                 }
-
-
             }
 
             listaTipos.put(6, cincoIgualesLista);
@@ -266,14 +215,49 @@ public class Day7 {
                     rango++;
                     resultado = resultado + mano.puntajeReal();
                 }
-                //listaTipos.get(clave).forEach(cartita -> System.out.println(cartita.getCartas() + "\n" + cartita.getRango()+ "\n"+cartita.getPuntaje()));
-
             }
-            listaTipos.get(1).forEach(mano-> System.out.println(mano.getCartas()+" "+ mano.getRango()));
-
             System.out.println(resultado);
         }
-
     }
+    public int tipoManoParte2(String mano)
+    {
+        String m = mano;
+        Map<Character,Integer> cantidadTipoCartas = new HashMap<>();
+        for(int carta=0; carta<mano.length();carta++)
+        {
+            if(cantidadTipoCartas.containsKey(mano.charAt(carta)))
+            {
+                cantidadTipoCartas.put(mano.charAt(carta), cantidadTipoCartas.get(mano.charAt(carta))+1);
+            }
+            else {
+                cantidadTipoCartas.put(mano.charAt(carta),1);
+            }
+        }
+        List<Character> keys = new LinkedList<>(cantidadTipoCartas.keySet());
+        Collections.sort(keys,(k1,k2) -> {
+            return  cantidadTipoCartas.get(k2)- cantidadTipoCartas.get(k1);
+        });
+        if (cantidadTipoCartas.containsKey('J') && keys.get(0)!='J')
+        {
+            cantidadTipoCartas.put(keys.get(0),cantidadTipoCartas.get(keys.get(0))+cantidadTipoCartas.get('J'));
+            cantidadTipoCartas.remove('J');
+            keys.remove(keys.indexOf('J'));
 
+        }
+        else if (cantidadTipoCartas.containsKey('J') && keys.get(0)=='J' && keys.size()!=1)
+        {
+            cantidadTipoCartas.put(keys.get(1),cantidadTipoCartas.get(keys.get(1))+cantidadTipoCartas.get('J'));
+            cantidadTipoCartas.remove('J');
+            keys.remove(keys.indexOf('J'));
+        }
+
+        int potencia=1;
+        double tipo=0;
+        for(char key: keys)
+        {
+            tipo = tipo+ (cantidadTipoCartas.get(key)*Math.pow(10,keys.size()-potencia));
+            potencia++;
+        }
+        return (int)tipo;
+    }
 }
