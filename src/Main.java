@@ -62,6 +62,7 @@ public class Main {
             case 8:
                 Day8 test8= new Day8();
                 test8.resolverParte1();
+                test8.resolverParte2();
                 break;
             default:
                 System.out.println("No existe el dia.");
