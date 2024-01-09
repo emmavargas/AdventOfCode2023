@@ -12,31 +12,39 @@ public class Day8 {
         Datos<Queue<Character>,Map<String,LinkedList<String>>> datosDelEjericio = this.cargarDatos();
         this.pasosParte1(datosDelEjericio);
     }
+
     public void resolverParte2() throws  IOException
     {
         Datos<Queue<Character>,Map<String,LinkedList<String>>> datosDelEjericio = this.cargarDatos();
         this.pasosParte2(datosDelEjericio);
     }
 
-    public Datos cargarDatos() throws IOException {
+    private Datos cargarDatos() throws IOException {
         int pasos = 0;
         String llegada;
         List<String> lines = new LinkedList<>();
         Queue<Character> eleccionCaminos = new LinkedList<>();
         Map<String, LinkedList<String>> caminos = new HashMap<>();
         Datos<Queue,Map> datosDelEjercicio = new Datos<>();
+
         try (BufferedReader in = new BufferedReader(new FileReader("src/InputDay8.txt"))) {
             String line;
+
             while ((line = in.readLine()) != null) {
                 lines.add(line);
             }
+
             char[] elecciones = lines.get(0).toCharArray();
+
             for (int eleccion = 0; eleccion < elecciones.length; eleccion++) {
                 eleccionCaminos.add(elecciones[eleccion]);
             }
+
             lines.remove(0);
             lines.remove(0);
+
             LinkedList<String> direcciones;
+
             for (String lineCamino : lines) {
                 String[] origenYDireccion;
                 origenYDireccion = lineCamino.split("=");
@@ -55,10 +63,10 @@ public class Day8 {
         }
     }
 
-    public void pasosParte1(Datos<Queue<Character>,Map<String,LinkedList<String>>> datosEjer) {
+    private void pasosParte1(Datos<Queue<Character>,Map<String,LinkedList<String>>> datosEjer) {
         int pasos = 0;
-        String llegada;
-        llegada = "AAA";
+        String llegada = "AAA";
+
         do {
             if (datosEjer.getEleccionCaminos().peek() == 'L') {
                 llegada = datosEjer.getCaminos().get(llegada).get(0);
@@ -72,7 +80,7 @@ public class Day8 {
         System.out.println(pasos);
     }
 
-    public void pasosParte2(Datos<Queue<Character>,Map<String,LinkedList<String>>> datosEjer)
+    private void pasosParte2(Datos<Queue<Character>,Map<String,LinkedList<String>>> datosEjer)
     {
         List<String> keys = new LinkedList<>(datosEjer.getCaminos().keySet());
         List<Long> pasoDiferentesCaminosA = new LinkedList<>();
@@ -90,6 +98,7 @@ public class Day8 {
             Queue<Character> eleccionCamino = datosEjer.getEleccionCaminos();
             int keysZ=0;
             long pasos=0;
+
             do {
                 if (eleccionCamino.peek() == 'L') {
                     keysA.set(key,datosEjer.getCaminos().get(keysA.get(key)).get(0));
@@ -99,8 +108,10 @@ public class Day8 {
                     keysA.set(key,datosEjer.getCaminos().get(keysA.get(key)).get(1));
                     eleccionCamino.offer(eleccionCamino.poll());
                 }
+
                 char[] letraKeya = keysA.get(key).toCharArray();
                 pasos++;
+
                 if(letraKeya[2]=='Z')
                 {
                     keysZ++;
@@ -108,11 +119,14 @@ public class Day8 {
             }while (!(keysZ==1));
             pasoDiferentesCaminosA.add(pasos);
         }
+
         long mcmTotal = pasoDiferentesCaminosA.get(0);
+
         for(int pasoscaminos=1; pasoscaminos<pasoDiferentesCaminosA.size();pasoscaminos++)
         {
             mcmTotal = this.mcm(mcmTotal,pasoDiferentesCaminosA.get(pasoscaminos));
         }
+
         System.out.println(mcmTotal);
     }
 
@@ -138,7 +152,7 @@ public class Day8 {
         }
     }
 
-    public long mcd(long n1, long n2)
+    private long mcd(long n1, long n2)
     {
         long resultado =0;
         long max= Math.max(n1,n2);
@@ -162,10 +176,9 @@ public class Day8 {
         return resultado;
     }
 
-    public long mcm(long n1, long n2)
+    private long mcm(long n1, long n2)
     {
         long resultado= (n1*n2)/this.mcd(n1,n2);
         return resultado;
     }
-
 }
