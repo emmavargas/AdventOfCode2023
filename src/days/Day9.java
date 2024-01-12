@@ -17,7 +17,7 @@ public class Day9 {
         this.sumaValoresParte2(informe);
     }
 
-    public  List<LinkedList<Integer>> cargaDatos() throws IOException
+    private  List<LinkedList<Integer>> cargaDatos() throws IOException
     {
         List<LinkedList<Integer>> informe = new LinkedList<>();
 
@@ -38,8 +38,17 @@ public class Day9 {
         return informe;
     }
 
+    private void sumaValoresParte1(List<LinkedList<Integer>> informe)
+    {
+        long valorFinal=0;
+        for (LinkedList<Integer> lineInforme: informe)
+        {
+            valorFinal = valorFinal + this.valorHistorialParte1(lineInforme);
+        }
+        System.out.println(valorFinal);
+    }
 
-    public long valorHistorialParte1(LinkedList<Integer> lineInforme)
+    private long valorHistorialParte1(LinkedList<Integer> lineInforme)
     {
         long valorFinal=0;
         int cantidadValores = lineInforme.size();
@@ -63,17 +72,17 @@ public class Day9 {
         return valorFinal ;
     }
 
-    public void sumaValoresParte1(List<LinkedList<Integer>> informe)
+    private void sumaValoresParte2(List<LinkedList<Integer>> informe)
     {
         long valorFinal=0;
         for (LinkedList<Integer> lineInforme: informe)
         {
-            valorFinal = valorFinal + this.valorHistorialParte1(lineInforme);
+            valorFinal = valorFinal + this.valorHistorialParte2(lineInforme);
         }
         System.out.println(valorFinal);
     }
 
-    public long valorHistorialParte2(LinkedList<Integer> lineInforme)
+    private long valorHistorialParte2(LinkedList<Integer> lineInforme)
     {
         int cantidadValores = lineInforme.size();
         int condicion=0;
@@ -96,15 +105,4 @@ public class Day9 {
 
         return lineInforme.get(0);
     }
-
-    public void sumaValoresParte2(List<LinkedList<Integer>> informe)
-    {
-        long valorFinal=0;
-        for (LinkedList<Integer> lineInforme: informe)
-        {
-            valorFinal = valorFinal + this.valorHistorialParte2(lineInforme);
-        }
-        System.out.println(valorFinal);
-    }
-
 }
