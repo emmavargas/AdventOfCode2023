@@ -156,7 +156,6 @@ public class Day10 {
     }
 
 
-
     public void recorridoTuberia(Datos ubicacionSTuberias)
     {
         LinkedList<LinkedList<Integer>> direccionesIniciales = new LinkedList<>();
