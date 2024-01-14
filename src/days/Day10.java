@@ -43,7 +43,6 @@ public class Day10 {
                 tuberias.put(key,lineTuberias);
                 key++;
             }
-
         }
         Datos datos = new Datos(tuberias,ubicacionS);
         return datos;
@@ -77,17 +76,18 @@ public class Day10 {
         LinkedList<Integer> coordenadas = new LinkedList<>();
         int direccionX=0;
         int direccionY=0;
+
         if(x==1 && y==0)
         {
             switch (tubo)
             {
                 case '7':
                     direccionX=0;
-                    direccionY=-1;
+                    direccionY=1;
                     break;
                 case 'J':
                     direccionX=0;
-                    direccionY=1;
+                    direccionY=-1;
                     break;
                 case '-':
                     direccionX=1;
@@ -101,11 +101,11 @@ public class Day10 {
             {
                 case 'F':
                     direccionX=0;
-                    direccionY=-1;
+                    direccionY=1;
                     break;
                 case 'L':
                     direccionX=0;
-                    direccionY=1;
+                    direccionY=-1;
                     break;
                 case '-':
                     direccionX=-1;
@@ -117,11 +117,11 @@ public class Day10 {
         {
             switch (tubo)
             {
-                case 'F':
+                case 'L':
                     direccionX=1;
                     direccionY=0;
                     break;
-                case '7':
+                case 'J':
                     direccionX=-1;
                     direccionY=0;
                     break;
@@ -135,11 +135,11 @@ public class Day10 {
         {
             switch (tubo)
             {
-                case 'L':
+                case 'F':
                     direccionX=1;
                     direccionY=0;
                     break;
-                case 'J':
+                case '7':
                     direccionX=-1;
                     direccionY=0;
                     break;
@@ -177,31 +177,26 @@ public class Day10 {
 
         int keyUbicacionActual= ubicacionSTuberias.getUbicacionS().get(0);
         int indiceTubo = ubicacionSTuberias.getUbicacionS().get(1);
-        System.out.println(ubicacionSTuberias.getTuberias().get(keyUbicacionActual).get(indiceTubo));
         int pasos =0;
+        boolean condicion =true;
         int x=0;
         int y=0;
-        boolean condicion =true;
+
         do {
             if(condicion==true)
             {
                 for(LinkedList<Integer> direccionInicial: direccionesIniciales)
                 {
-                    LinkedList<Integer> proximaDireccion= this.direccion(ubicacionSTuberias.getTuberias().get(keyUbicacionActual+direccionInicial.get(0)).get(indiceTubo+direccionInicial.get(1)), direccionInicial.get(1), direccionInicial.get(0));
+                    LinkedList<Integer> proximaDireccion= this.direccion(ubicacionSTuberias.getTuberias().get(keyUbicacionActual+direccionInicial.get(1)).get(indiceTubo+direccionInicial.get(0)), direccionInicial.get(0), direccionInicial.get(1));
                     x = proximaDireccion.get(0);
                     y = proximaDireccion.get(1);
-                    keyUbicacionActual =keyUbicacionActual-x;
-                    indiceTubo=indiceTubo-y;
-                    System.out.println(ubicacionSTuberias.getTuberias().get(keyUbicacionActual+direccionInicial.get(0)).get(indiceTubo+direccionInicial.get(1)));
                     if(x!=0 || y!=0)
                     {
-                        System.out.println("pasos");
+                        keyUbicacionActual=keyUbicacionActual+y;
+                        indiceTubo=indiceTubo+x;
                         break;
                     }
-                    System.out.println("pasos");
-
                 }
-                System.out.println(x +" "+ y);
 
                 condicion=false;
                 pasos++;
@@ -210,16 +205,12 @@ public class Day10 {
                 LinkedList<Integer> proximaDireccion = this.direccion(ubicacionSTuberias.getTuberias().get(keyUbicacionActual).get(indiceTubo),x,y);
                 x= proximaDireccion.get(0);
                 y =proximaDireccion.get(1);
-                keyUbicacionActual =keyUbicacionActual-x;
-                indiceTubo=indiceTubo-y;
+                keyUbicacionActual =keyUbicacionActual+y;
+                indiceTubo=indiceTubo+x;
                 pasos++;
-                System.out.println("entro en el else");
-
             }
-        }while(condicion==true);
-        //System.out.println(pasos);
+        }while(ubicacionSTuberias.getTuberias().get(keyUbicacionActual).get(indiceTubo)!='S');
+
+        System.out.println(pasos/2);
     }
-
-
-
 }
